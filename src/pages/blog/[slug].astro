@@ -1,0 +1,117 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ShareButton from "../../components/ShareButton.astro";
+import { format } from "date-fns";
+import { render } from "astro:content";
+import GoBackButton from "../../components/GoBackButton.astro";
+
+export async function getStaticPaths() {
+  let posts = await getCollection("blog");
+  return posts.map((post: any) => ({
+    props: {
+      post,
+    },
+    params: { slug: post.id },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+  <article class="flex flex-col mr-4 mt-4 mb-16">
+    <header class="">
+      <img
+        src={`https://picsum.photos/seed/${post.id}/800/600`}
+        class="aspect-video object-cover w-full rounded-2xl"
+      />
+      <div class="fixed flex flex-row gap-4 top-8 right-12">
+        <ShareButton title={post.data.title} href={Astro.url} />
+        <GoBackButton />
+      </div>
+    </header>
+    <div
+      class="mx-auto bg-gray-50/75 dark:bg-gray-900/75 -mt-48 p-8 rounded-2xl"
+    >
+      <div
+        class="flex flex-row justify-between text-gray-500 dark:text-gray-400 pb-6"
+      >
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 inline-block align-middle"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+            ></path>
+          </svg>
+          {format(post.data.publishedAt, "MMMM dd, yyyy. HH:mm aaa")}
+        </span>
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4 inline-block align-middle"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+            ></path>
+          </svg>
+          {post.rendered.metadata.frontmatter.minutesRead}
+        </span>
+      </div>
+      <div class="prose prose-rose dark:prose-invert">
+        <Content />
+      </div>
+    </div>
+  </article>
+  <div slot="sidebar">
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-2">
+      Table of Contents
+    </div>
+    <div class="ml-2 mb-4 pl-2 border-l-2 border-gray-500">
+      {
+        post.rendered.metadata.headings.map(
+          (heading: { text: string; slug: string; depth: number }) => (
+            <div
+              style={{ paddingLeft: `${(heading.depth - 1) * 16}px` }}
+              class="before:content-['•_'] before:text-gray-400"
+            >
+              <a
+                href={`#${heading.slug}`}
+                class="text-gray-500 dark:text-gray-400 hover:text-rose-500 transition-colors"
+              >
+                {heading.text}
+              </a>
+            </div>
+          )
+        )
+      }
+    </div>
+    <div class="flex flex-wrap justify-center gap-2" slot="sidebar">
+      {
+        post.data.tags.map((word) => (
+          <a
+            class="bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-300 px-4 py-1 rounded-full hover:bg-rose-200 dark:hover:bg-rose-700 dark:hover:text-rose-200 transition-colors"
+            href={`/blog/tag/${word}`}
+          >
+            {word}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

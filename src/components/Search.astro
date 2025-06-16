@@ -1,0 +1,94 @@
+<form class="relative mb-6 dark:text-gray-200" id="search-form">
+  <button
+    type="submit"
+    class="absolute top-0 right-0 flex justify-center items-center w-12 h-full"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-4"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+      ></path>
+    </svg>
+  </button>
+
+  <input
+    name="q"
+    type="search"
+    placeholder="Search"
+    class="w-full border-2 border-gray-200 dark:border-gray-700 rounded-full py-2 pl-4 pr-8 focus-visible:outline-rose-300 focus-visible:outline-1"
+  />
+</form>
+
+<dialog
+  id="search-modal"
+  class="top-[50%] left-[50%] w-2/3 h-1/2 -translate-1/2 z-10 rounded-2xl p-4 bg-gray-950/90 text-gray-50"
+>
+  <header class="mb-4">
+    <h2 class="text-2xl">
+      Search: <input
+        id="search-modal-input"
+        type="search"
+        class="border-b-2 focus-visible:outline-0 px-4 py-4"
+      />
+    </h2>
+  </header>
+  <main>
+    <div>
+      <div>Lorem ipsum dolor sit amet consectetur</div>
+      <div>November 10th, 2025. 4:00pm. 2 min. read.</div>
+    </div>
+  </main>
+</dialog>
+
+<script>
+  const form = document.getElementById("search-form");
+  const modal = document.getElementById("search-modal");
+  const modalInput = document.getElementById("search-modal-input");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = modal?.querySelector<HTMLInputElement>("input[type=search]");
+    if (input) {
+      input.value = (modalInput as HTMLInputElement)?.value ?? "";
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+      doSearch(input.value);
+    }
+    (modal as HTMLDialogElement)?.showModal();
+  });
+
+  function debounce(fn: CallableFunction, delay: number) {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    return function (...args) {
+      clearTimeout(timeoutId); // Cancela la llamada anterior
+      timeoutId = setTimeout(() => {
+        fn.apply(this, args); // Llama a la función después del retraso
+      }, delay);
+    };
+  }
+
+  modalInput?.addEventListener(
+    "keyup",
+    debounce(() => {
+      const query = modalInput?.value ?? "";
+      const input = form?.querySelector<HTMLInputElement>("input[type=search]");
+      if (input) {
+        input.value = query;
+      }
+      doSearch(query);
+    }, 250)
+  );
+
+  async function doSearch(query: string) {
+    if (query.trim() === "") return;
+    console.log(">>> search", query);
+  }
+</script>

@@ -3,12 +3,21 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.9.2"
+    "@tailwindcss/vite": "^4.1.10",
+    "accessible-astro-components": "^4.1.1",
+    "astro": "^5.9.2",
+    "astro-icon": "^1.1.5",
+    "astro-reading-time": "^0.1.14",
+    "date-fns": "^4.1.0",
+    "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16"
   }
 }
