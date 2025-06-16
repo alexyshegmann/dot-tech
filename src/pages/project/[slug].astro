@@ -1,0 +1,112 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import SmallPostCard from "../../components/SmallPostCard.astro";
+
+export async function getStaticPaths() {
+  let projects = await getCollection("projects");
+  return projects.map((project: any) => ({
+    props: {
+      project,
+    },
+    params: { slug: project.id },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const posts = await getCollection("blog");
+const related = posts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .filter((post) => post.data.project?.id === project.id)
+  .slice(0, 5);
+---
+
+<Layout>
+  <div class="mt-4 mr-4 flex flex-row">
+    <div class="w-2/3">
+      <div class="prose dark:prose-invert">
+        <Content />
+      </div>
+    </div>
+    <div class="w-1/3">
+      <h2 class="text-gray-200 text-2xl font-bold">Related posts</h2>
+      <div class="flex flex-row flex-wrap">
+        {
+          related.map((post) => (
+            <div class="w-full">
+              <SmallPostCard post={post} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div slot="sidebar" class="mx-4">
+    <div class="flex flex-row gap-8 justify-center">
+      {
+        project.data.repo && (
+          <a
+            href={project.data.repo}
+            target="_blank"
+            class="text-gray-200 hover:text-rose-500 transition-colors"
+          >
+            <Icon name="github" class="size-12" title="Repo" />
+          </a>
+        )
+      }
+      {
+        project.data.publicUrl && (
+          <a
+            href={project.data.publicUrl}
+            target="_blank"
+            class="text-gray-200 hover:text-rose-500 transition-colors"
+          >
+            <Icon name="public" class="size-12" title="Public URL" />
+          </a>
+        )
+      }
+    </div>
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
+      Table of Contents
+    </div>
+    <div class="ml-2 mb-4 pl-2 border-l-2 border-gray-500">
+      {
+        project.rendered.metadata.headings.map(
+          (heading: { text: string; slug: string; depth: number }) => (
+            <div
+              style={{ paddingLeft: `${(heading.depth - 1) * 16}px` }}
+              class="before:content-['•_'] before:text-gray-400"
+            >
+              <a
+                href={`#${heading.slug}`}
+                class="text-gray-500 dark:text-gray-400 hover:text-rose-500 transition-colors"
+              >
+                {heading.text}
+              </a>
+            </div>
+          )
+        )
+      }
+    </div>
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
+      Tech
+    </div>
+    <div class="flex flex-wrap justify-center gap-2">
+      {
+        project.data.tech.map((tech) => (
+          <a
+            class="bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-300 px-4 py-1 rounded-full hover:bg-rose-200 dark:hover:bg-rose-700 dark:hover:text-rose-200 transition-colors"
+            href={`/project/tech/${tech}`}
+          >
+            {tech}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

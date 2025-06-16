@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import { format } from "date-fns";
+const { post } = Astro.props;
+---
+
+<article
+  class="flex flex-col shadow-md dark:bg-gray-700 m-4 rounded-xl hover:translate-x-1 transition-transform relative"
+>
+  <Image
+    src={post.data.image}
+    alt={post.data.title}
+    class="object-cover w-full h-32 rounded-t-xl"
+  />
+  <h2 class="flex-grow text-xl leading-10 my-4 mx-4 text-gray-500 dark:text-gray-300 line-clamp-2">
+    <a
+      href={`/blog/${post.id}`}
+      class="after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full"
+    >
+      {post.data.title}
+    </a>
+  </h2>
+  <div class="prose line-clamp-2 mx-4 text-gray-600 dark:text-gray-200 text-sm">
+    <p>{post.data.excerpt}</p>
+  </div>
+  <div
+    class="text-sm mt-4 flex flex-row justify-between text-gray-400 mx-4 pb-6"
+  >
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-4 inline-block align-middle"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+        ></path>
+      </svg>
+      {format(post.data.publishedAt, "MMMM dd, yyyy. HH:mm aaa")}
+    </span>
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-4 inline-block align-middle"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+        ></path>
+      </svg>
+      {post.rendered.metadata.frontmatter.minutesRead}
+    </span>
+  </div>
+</article>

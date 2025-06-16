@@ -3,6 +3,7 @@ title: 'Learning new things: Astro'
 excerpt: 'This website was made with Astro. If you want a quick overview, take a look.'
 publishedAt: '2025-11-10T13:23:00'
 image: '../../assets/blog/2024/08/astro.jpeg'
+project: ah-dot-tech
 tags:
   - Astro
   - Exploring tech
