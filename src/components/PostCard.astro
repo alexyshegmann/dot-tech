@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { format } from "date-fns";
 const { post } = Astro.props;
 ---
@@ -6,8 +7,9 @@ const { post } = Astro.props;
 <article
   class="flex flex-col shadow-md dark:bg-gray-700 m-4 rounded-xl hover:translate-y-1 transition-transform relative h-[505px]"
 >
-  <img
-    src={`https://picsum.photos/seed/${post.id}/800/600`}
+  <Image
+    src={post.data.image}
+    alt={post.data.title}
     class="aspect-video object-cover w-full rounded-t-xl"
   />
   <h2 class="flex-grow text-2xl leading-10 my-4 mx-4 text-gray-500 dark:text-gray-300 line-clamp-2">

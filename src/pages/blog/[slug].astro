@@ -5,6 +5,7 @@ import ShareButton from "../../components/ShareButton.astro";
 import { format } from "date-fns";
 import { render } from "astro:content";
 import GoBackButton from "../../components/GoBackButton.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   let posts = await getCollection("blog");
@@ -23,8 +24,9 @@ const { Content } = await render(post);
 <Layout title={post.data.title}>
   <article class="flex flex-col mr-4 mt-4 mb-16">
     <header class="">
-      <img
-        src={`https://picsum.photos/seed/${post.id}/800/600`}
+      <Image
+        src={post.data.image}
+        alt={post.data.title}
         class="aspect-video object-cover w-full rounded-2xl"
       />
       <div class="fixed flex flex-row gap-4 top-8 right-12">
@@ -33,7 +35,7 @@ const { Content } = await render(post);
       </div>
     </header>
     <div
-      class="mx-auto bg-gray-50/75 dark:bg-gray-900/75 -mt-48 p-8 rounded-2xl"
+      class="mx-auto bg-gray-50/75 dark:bg-gray-900/75 -mt-48 p-8 rounded-2xl min-w-[656px]"
     >
       <div
         class="flex flex-row justify-between text-gray-500 dark:text-gray-400 pb-6"
@@ -78,8 +80,8 @@ const { Content } = await render(post);
       </div>
     </div>
   </article>
-  <div slot="sidebar">
-    <div class="text-gray-600 dark:text-gray-200 font-bold mb-2">
+  <div slot="sidebar" class="mx-4">
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
       Table of Contents
     </div>
     <div class="ml-2 mb-4 pl-2 border-l-2 border-gray-500">
@@ -101,7 +103,10 @@ const { Content } = await render(post);
         )
       }
     </div>
-    <div class="flex flex-wrap justify-center gap-2" slot="sidebar">
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
+      Tags
+    </div>
+    <div class="flex flex-wrap justify-center gap-2">
       {
         post.data.tags.map((word) => (
           <a

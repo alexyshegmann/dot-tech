@@ -2,133 +2,137 @@
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { Accordion, AccordionItem } from "accessible-astro-components";
+import contactImage from "../assets/contact.jpeg";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="Alexys Hegmann. Get in touch.">
   <div class="text-gray-600 dark:text-gray-100 my-4 mr-4">
-    <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8">
+    <Image
+      src={contactImage}
+      alt="Get in touch"
+      class="aspect-video object-cover w-full rounded-2xl"
+    />
+    <div class="flex flex-row border-b-2 border-gray-800 pb-8 my-8">
       <h1 class="text-4xl">Let's do this!</h1>
     </div>
-      <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8">
-        <div class="w-1/3 pr-8">
-          <h2 class="text-4xl">Get in touch</h2>
-          <p>Contact me directly using my social media accounts.</p>
-        </div>
-        <div class="w-2/3">
-          <div class="flex flex-row gap-16 justify-start">
-            <a
-              href="https://github.com/alexyshegmann"
-              target="_blank"
-              class="hover:text-rose-500 transition-colors"
-            >
-              <Icon name="github" class="size-12" />
-            </a>
-            <!-- <a
+    <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8">
+      <div class="w-1/3 pr-8">
+        <h2 class="text-4xl">Get in touch</h2>
+        <p>Contact me directly using my social media accounts.</p>
+      </div>
+      <div class="w-2/3">
+        <div class="flex flex-row gap-16 justify-start">
+          <a
+            href="https://github.com/alexyshegmann"
+            target="_blank"
+            class="hover:text-rose-500 transition-colors"
+          >
+            <Icon name="github" class="size-12" />
+          </a>
+          <!-- <a
               href="https://www.reddit.com/user/yagarasu/"
               class="hover:text-rose-500 transition-colors"
               target="_blank"
             >
               <Icon name="reddit" class="size-12" />
             </a> -->
-            <a
-              href="https://www.linkedin.com/in/alexyshegmann/"
-              class="hover:text-rose-500 transition-colors"
-              target="_blank"
-            >
-              <Icon name="linkedin" class="size-12" />
-            </a>
-            <!-- <a
+          <a
+            href="https://www.linkedin.com/in/alexyshegmann/"
+            class="hover:text-rose-500 transition-colors"
+            target="_blank"
+          >
+            <Icon name="linkedin" class="size-12" />
+          </a>
+          <!-- <a
               href="https://discordapp.com/users/284791377336860673"
               class="hover:text-rose-500 transition-colors"
               target="_blank"
             >
               <Icon name="discord" class="size-12" />
             </a> -->
-          </div>
         </div>
       </div>
-      <div class="flex flex-row">
-        <div class="w-1/3 pr-8">
-          <h2 class="text-4xl">Quick answers</h2>
-        </div>
-        <div class="w-2/3">
-          <Accordion>
-            <AccordionItem name="where" title="Where are you based?">
-              <div class="max-w-[60ch] leading-10 mx-auto">
-                <p>
-                  I'm currently based on Queretaro, Mexico. It's a city located
-                  around 3 hours away from Mexico City. It's a beautiful place
-                  to live with a colonial downtown, but with all the amenities
-                  of a modern city. If you happen to visit, drop me a DM and we
-                  can go grab a coffee.
-                </p>
-              </div>
-            </AccordionItem>
-            <AccordionItem name="kind" title="What kind of developer are you?">
-              <div class="max-w-[60ch] leading-10 mx-auto">
-                <p>
-                  I'm currently leaning towards Front End development using
-                  React as my weapon of choice, but I've also worked on the Back
-                  End using PHP. In my free time &mdash;not that I have too
-                  much&mdash;, I also enjoy making games with Godot and I've
-                  been tinkering around with Rust.
-                </p>
-                <p>
-                  Oh, and when Flash was a thing, I dove deep into ActionScript,
-                  so I'm kind of a jack of all trades.
-                </p>
-              </div>
-            </AccordionItem>
-            <AccordionItem name="difference" title="What sets you appart?">
-              <div class="max-w-[60ch] leading-10 mx-auto">
-                <p>
-                  That's a tricky question, my friend. My quick answer would be <strike
-                    >passion</strike
-                  >
-                  <strong>obsession</strong>.
-                </p>
-                <p>
-                  My work experience spans from 2010, but I've been coding since
-                  I was 9 years old. I learnt BASIC to build games without
-                  Internet, just reading the QBasic docs. I learnt Visual Basic
-                  6 with 2 chunky books I found in a thrift store when I was 11.
-                  I fell in love with web development at around 12 years old
-                  when we got Dial Up Internet connection after begging my mum
-                  for months.
-                </p>
-                <p>
-                  Yes, I was on Geocities, Angelfire, Tripod, writing HTML, then
-                  CSS and finally wonky JavaScript. By the time I got to
-                  highschool, I was coding Guestbooks and Blogs in PHP with
-                  MySQL.
-                </p>
-                <p>
-                  When I got to college, I was more experienced in some
-                  technologies than my teachers. I learnt ActionScript when I
-                  joined a Game Development club.
-                </p>
-                <p>
-                  My first internship was at the same college I attended in the
-                  web marketing team. I build landing pages and handling my
-                  first prod deployment of a WordPress site.
-                </p>
-                <p>
-                  I've created CRMs, job posting sites, survey systems,
-                  integrations, automations, games, chats, email tracking
-                  systems... you name it. <strong>And I love it.</strong>
-                </p>
-              </div>
-            </AccordionItem>
-            <AccordionItem
-              name="opportunities"
-              title="Are you open for oportunities?"
-            >
-              <div class="max-w-[60ch] leading-10 mx-auto">
-                <p>Sure! Drop me a DM in my LinkedIn and we can talk.</p>
-              </div>
-            </AccordionItem>
-          </Accordion>
-        </div>
+    </div>
+    <div class="flex flex-row">
+      <div class="w-1/3 pr-8">
+        <h2 class="text-4xl">Quick answers</h2>
+      </div>
+      <div class="w-2/3">
+        <Accordion>
+          <AccordionItem name="where" title="Where are you based?">
+            <div class="max-w-[60ch] leading-10 mx-auto">
+              <p>
+                I'm currently based on Queretaro, Mexico. It's a city located
+                around 3 hours away from Mexico City. It's a beautiful place to
+                live with a colonial downtown, but with all the amenities of a
+                modern city. If you happen to visit, drop me a DM and we can go
+                grab a coffee.
+              </p>
+            </div>
+          </AccordionItem>
+          <AccordionItem name="kind" title="What kind of developer are you?">
+            <div class="max-w-[60ch] leading-10 mx-auto">
+              <p>
+                I'm currently leaning towards Front End development using React
+                as my weapon of choice, but I've also worked on the Back End
+                using PHP. In my free time &mdash;not that I have too
+                much&mdash;, I also enjoy making games with Godot and I've been
+                tinkering around with Rust.
+              </p>
+              <p>
+                Oh, and when Flash was a thing, I dove deep into ActionScript,
+                so I'm kind of a jack of all trades.
+              </p>
+            </div>
+          </AccordionItem>
+          <AccordionItem name="difference" title="What sets you appart?">
+            <div class="max-w-[60ch] leading-10 mx-auto">
+              <p>
+                That's a tricky question, my friend. My quick answer would be <strike
+                  >passion</strike
+                >
+                <strong>obsession</strong>.
+              </p>
+              <p>
+                My work experience spans from 2010, but I've been coding since I
+                was 9 years old. I learnt BASIC to build games without Internet,
+                just reading the QBasic docs. I learnt Visual Basic 6 with 2
+                chunky books I found in a thrift store when I was 11. I fell in
+                love with web development at around 12 years old when we got
+                Dial Up Internet connection after begging my mum for months.
+              </p>
+              <p>
+                Yes, I was on Geocities, Angelfire, Tripod, writing HTML, then
+                CSS and finally wonky JavaScript. By the time I got to
+                highschool, I was coding Guestbooks and Blogs in PHP with MySQL.
+              </p>
+              <p>
+                When I got to college, I was more experienced in some
+                technologies than my teachers. I learnt ActionScript when I
+                joined a Game Development club.
+              </p>
+              <p>
+                My first internship was at the same college I attended in the
+                web marketing team. I build landing pages and handling my first
+                prod deployment of a WordPress site.
+              </p>
+              <p>
+                I've created CRMs, job posting sites, survey systems,
+                integrations, automations, games, chats, email tracking
+                systems... you name it. <strong>And I love it.</strong>
+              </p>
+            </div>
+          </AccordionItem>
+          <AccordionItem
+            name="opportunities"
+            title="Are you open for oportunities?"
+          >
+            <div class="max-w-[60ch] leading-10 mx-auto">
+              <p>Sure! Drop me a DM in my LinkedIn and we can talk.</p>
+            </div>
+          </AccordionItem>
+        </Accordion>
       </div>
     </div>
   </div>
