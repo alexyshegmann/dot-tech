@@ -5,14 +5,16 @@ const { post } = Astro.props;
 ---
 
 <article
-  class="flex flex-col shadow-md dark:bg-gray-700 m-4 rounded-xl hover:translate-y-1 transition-transform relative h-[505px]"
+  class="flex flex-col shadow-md dark:bg-gray-700 m-4 rounded-xl hover:translate-y-1 transition-transform relative lg:h-[505px]"
 >
   <Image
     src={post.data.image}
     alt={post.data.title}
     class="aspect-video object-cover w-full rounded-t-xl"
   />
-  <h2 class="flex-grow text-2xl leading-10 my-4 mx-4 text-gray-500 dark:text-gray-300 line-clamp-2">
+  <h2
+    class="flex-grow text-2xl leading-10 my-4 mx-4 text-gray-500 dark:text-gray-300 line-clamp-2"
+  >
     <a
       href={`/blog/${post.id}`}
       class="after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full"
@@ -20,7 +22,7 @@ const { post } = Astro.props;
       {post.data.title}
     </a>
   </h2>
-  <div class="prose line-clamp-4 mx-4 text-gray-600 dark:text-gray-200">
+  <div class="prose dark:prose-invert line-clamp-4 mx-4">
     <p>{post.data.excerpt}</p>
   </div>
   <div

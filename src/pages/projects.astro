@@ -7,8 +7,8 @@ const projects = await getCollection("projects");
 ---
 
 <Layout title="Alexys Hegmann. Get in touch.">
-  <div class="my-4 mr-4">
-    <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8">
+  <div class="my-4 mr-4 mb-40 lg:mb-0">
+    <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8 mx-4">
       <h1 class="text-4xl text-gray-600 dark:text-gray-200">Projects</h1>
     </div>
     <div>
@@ -35,14 +35,14 @@ const projects = await getCollection("projects");
       }
       {
         projects.map((project) => (
-          <div class="flex flex-row shadow-md dark:bg-gray-700 p-4 m-4 gap-4 rounded-xl hover:translate-x-1 transition-transform relative">
+          <div class="flex flex-col lg:flex-row shadow-md dark:bg-gray-700 p-4 m-4 gap-4 rounded-xl hover:translate-x-1 transition-transform relative">
             <Image
               src={project.data.preview}
               alt={project.data.name}
-              class="aspect-square object-cover w-48 rounded-xl border-2 border-gray-400"
+              class="aspect-square object-cover w-48 rounded-xl border-2 border-gray-400 mx-auto"
             />
             <div class="flex flex-col">
-              <h2 class="text-2xl text-gray-600 dark:text-gray-200 hover:text-rose-500 transition-colors">
+              <h2 class="text-2xl text-gray-600 dark:text-gray-200 hover:text-rose-500 transition-colors mb-2">
                 <a
                   href={`/project/${project.id}`}
                   class="after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full"
@@ -51,7 +51,7 @@ const projects = await getCollection("projects");
                 </a>
               </h2>
               <div class="prose dark:prose-invert grow">{project.data.excerpt}</div>
-              <div class="flex flex-row flex-wrap gap-4 text-gray-400">
+              <div class="flex flex-row flex-wrap gap-4 text-gray-400 mt-2">
                 {project.data.tech.map((tech) => (
                   <div>{tech}</div>
                 ))}

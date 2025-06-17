@@ -26,14 +26,14 @@ const related = posts
 ---
 
 <Layout>
-  <div class="mt-4 mr-4 flex flex-row">
-    <div class="w-2/3">
+  <div class="mt-4 mr-4 flex flex-col lg:flex-row mb-40 lg:mb-0">
+    <div class="w-full lg:w-2/3 px-4">
       <div class="prose dark:prose-invert">
         <Content />
       </div>
     </div>
-    <div class="w-1/3">
-      <h2 class="text-gray-200 text-2xl font-bold">Related posts</h2>
+    <div class="w-full lg:w-1/3 mt-4 lg:mt-0">
+      <h2 class="text-gray-800 dark:text-gray-200 text-2xl font-bold ml-4">Related posts</h2>
       <div class="flex flex-row flex-wrap">
         {
           related.map((post) => (
