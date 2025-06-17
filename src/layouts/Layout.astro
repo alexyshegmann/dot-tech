@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import DarkMode from "../components/DarkMode.astro";
+import Search from "astro-pagefind/components/Search";
 
 const { title } = Astro.props;
 const { pathname } = Astro.url;
@@ -14,24 +15,48 @@ const { pathname } = Astro.url;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style>
+      html {
+        --pagefind-ui-scale: 0.8;
+        --pagefind-ui-primary: var(--color-rose-500);
+        --pagefind-ui-text: var(--color-gray-600);
+        --pagefind-ui-background: var(--color-gray-100);
+        --pagefind-ui-border: var(--color-gray-50);
+        --pagefind-ui-tag: var(--color-gray-600);
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: var(--radius-lg);
+        --pagefind-ui-image-border-radius: var(--radius-md);
+        --pagefind-ui-image-box-ratio: 3 / 2;
+        --pagefind-ui-font: sans-serif;
+      }
+      html.dark {
+        --pagefind-ui-text: var(--color-gray-100);
+        --pagefind-ui-background: var(--color-gray-950);
+        --pagefind-ui-border: var(--color-gray-600);
+        --pagefind-ui-tag: var(--color-gray-200);
+      }
+    </style>
   </head>
   <body class="dark:bg-gray-900 bg-gray-50 h-full">
     <div class="flex flex-col xl:flex-row gap-4 xl:h-screen">
       <div class="flex flex-col w-full xl:w-1/4 xl:h-screen">
         <div class="flex flex-col gap-4 mr-4 p-4">
           <div>
-            <h1
+            <div
               class="text-5xl text-gray-500 dark:text-gray-300 hover:text-rose-500 transition-colors font-light mb-4"
+              data-pagefind-ignore
             >
               <a href="/">Alexys Hegmann</a>
-            </h1>
+            </div>
           </div>
-          <span class="text-2xl text-gray-400 dark:text-gray-400"
-            >Senior Software Engineer</span
+          <span
+            class="text-2xl text-gray-400 dark:text-gray-400"
+            data-pagefind-ignore>Senior Software Engineer</span
           >
         </div>
         <div
           class="prose-sm mx-4 mb-4 text-gray-600 dark:text-gray-300 leading-8"
+          data-pagefind-ignore
         >
           <p>
             I'm a Software Engineer with <strong>15+ years</strong> of experience
@@ -44,6 +69,13 @@ const { pathname } = Astro.url;
         </div>
         <div class="flex flex-col gap-4 grow">
           <!-- <Search /> -->
+          <div class="mx-4">
+            <Search
+              id="search"
+              className="pagefind-ui"
+              uiOptions={{ showImages: false }}
+            />
+          </div>
           <slot name="sidebar" />
         </div>
         <div class="mb-16">

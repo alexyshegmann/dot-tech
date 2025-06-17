@@ -21,14 +21,14 @@ const { posts } = Astro.props;
 const { tag } = Astro.params;
 ---
 
-<Layout title={`Alexys Hegmann. Posts tagged ${tag}`}>
+<Layout title={`Posts tagged ${tag}`}>
   <div class="my-4 flex flex-row gap-4 justify-between items-center mx-4">
     <h2 class="text-3xl text-gray-600 dark:text-gray-200">Tag: {tag}</h2>
     <div class="fixed bottom-24 right-4 z-10">
       <GoBackButton />
     </div>
   </div>
-  <div class="flex flex-row flex-wrap mb-40">
+  <div class="flex flex-row flex-wrap mb-40" data-pagefind-body>
     {
       posts.map((post) => (
         <div class="w-full lg:w-1/3">

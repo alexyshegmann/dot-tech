@@ -6,12 +6,12 @@ import { Image } from "astro:assets";
 const projects = await getCollection("projects");
 ---
 
-<Layout title="Alexys Hegmann. Get in touch.">
+<Layout title="Projects">
   <div class="my-4 mr-4 mb-40 lg:mb-0">
     <div class="flex flex-row border-b-2 border-gray-800 pb-8 mb-8 mx-4">
       <h1 class="text-4xl text-gray-600 dark:text-gray-200">Projects</h1>
     </div>
-    <div>
+    <div data-pagefind-body>
       {
         projects.length === 0 && (
           <div class="flex flex-col items-center gap-4">
@@ -50,7 +50,9 @@ const projects = await getCollection("projects");
                   {project.data.name}
                 </a>
               </h2>
-              <div class="prose dark:prose-invert grow">{project.data.excerpt}</div>
+              <div class="prose dark:prose-invert grow">
+                {project.data.excerpt}
+              </div>
               <div class="flex flex-row flex-wrap gap-4 text-gray-400 mt-2">
                 {project.data.tech.map((tech) => (
                   <div>{tech}</div>

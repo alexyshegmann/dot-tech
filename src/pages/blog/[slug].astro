@@ -23,13 +23,16 @@ const { Content } = await render(post);
 
 <Layout title={post.data.title}>
   <article class="flex flex-col mx-4 lg:mr-4 mt-4 mb-40 lg:mb-16">
-    <header class="">
+    <header>
       <Image
         src={post.data.image}
         alt={post.data.title}
+        data-pagefind-index-attrs="alt"
         class="aspect-video object-cover w-full rounded-2xl"
       />
-      <div class="fixed flex flex-row gap-4 bottom-24 right-4 lg:bottom-auto lg:top-8 lg:right-12">
+      <div
+        class="fixed flex flex-row gap-4 bottom-24 right-4 lg:bottom-auto lg:top-8 lg:right-12"
+      >
         <ShareButton title={post.data.title} href={Astro.url} />
         <GoBackButton />
       </div>
@@ -75,7 +78,10 @@ const { Content } = await render(post);
           {post.rendered.metadata.frontmatter.minutesRead}
         </span>
       </div>
-      <div class="prose pose-sm prose-rose dark:prose-invert">
+      <div
+        class="prose pose-sm prose-rose dark:prose-invert"
+        data-pagefind-body
+      >
         <Content />
       </div>
     </div>

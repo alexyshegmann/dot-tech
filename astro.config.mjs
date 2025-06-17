@@ -1,6 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import astroReadingTime from 'astro-reading-time';
 import { defineConfig } from 'astro/config';
+import pagefind from "astro-pagefind";
 
 import icon from 'astro-icon';
 
@@ -9,7 +10,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [astroReadingTime(), icon()],
+  integrations: [astroReadingTime(), icon(), pagefind()],
   markdown: {
     shikiConfig: {
       theme: 'dracula'
