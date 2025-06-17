@@ -3,7 +3,7 @@ import "../styles/global.css";
 import DarkMode from "../components/DarkMode.astro";
 import Search from "astro-pagefind/components/Search";
 
-const { title } = Astro.props;
+const { title, description, image } = Astro.props;
 const { pathname } = Astro.url;
 ---
 
@@ -13,7 +13,23 @@ const { pathname } = Astro.url;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
+    {description && <meta name="description" content={description} />}
+    <!-- Open Graph tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    {description && <meta property="og:description" content={description} />}
+    {
+      image && (
+        <meta
+          property="og:image"
+          content={image}
+        />
+      )
+    }
+    <meta property="og:image:alt" content={title} />
     <title>{title}</title>
     <style>
       html {

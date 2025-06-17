@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { render } from "astro:content";
 import GoBackButton from "../../components/GoBackButton.astro";
 import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   let posts = await getCollection("blog");
@@ -19,9 +20,15 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const image = await getImage({ src: post.data.image });
+const socialImageURL = new URL(image.src, Astro.url);
 ---
 
-<Layout title={post.data.title}>
+<Layout
+  title={post.data.title}
+  description={post.data.excerpt}
+  image={socialImageURL}
+>
   <article class="flex flex-col mx-4 lg:mr-4 mt-4 mb-40 lg:mb-16">
     <header>
       <Image
