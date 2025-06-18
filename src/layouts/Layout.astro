@@ -2,8 +2,10 @@
 import "../styles/global.css";
 import DarkMode from "../components/DarkMode.astro";
 import Search from "astro-pagefind/components/Search";
+import LogoImg from "../assets/logo.svg";
+import Logo from "../components/Logo.astro";
 
-const { title, description, image } = Astro.props;
+const { title, description, image, isHome = false } = Astro.props;
 const { pathname } = Astro.url;
 ---
 
@@ -55,22 +57,11 @@ const { pathname } = Astro.url;
   <body class="dark:bg-gray-900 bg-gray-50 h-full">
     <div class="flex flex-col xl:flex-row gap-4 xl:h-screen">
       <div class="flex flex-col w-full xl:w-1/4 xl:h-screen">
-        <div class="flex flex-col gap-4 mr-4 p-4">
-          <div>
-            <div
-              class="text-5xl text-gray-500 dark:text-gray-300 hover:text-rose-500 transition-colors font-light mb-4"
-              data-pagefind-ignore
-            >
-              <a href="/">Alexys Hegmann</a>
-            </div>
-          </div>
-          <span
-            class="text-2xl text-gray-400 dark:text-gray-400"
-            data-pagefind-ignore>Senior Software Engineer</span
-          >
+        <div class="m-4">
+          <Logo />
         </div>
         <div
-          class="prose-sm mx-4 mb-4 text-gray-600 dark:text-gray-300 leading-8"
+          class={`prose-sm mx-4 mb-4 text-gray-600 dark:text-gray-500 leading-8 ${isHome ? 'block' : 'hidden'}`}
           data-pagefind-ignore
         >
           <p>
