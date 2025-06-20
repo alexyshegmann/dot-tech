@@ -1,7 +1,7 @@
 ---
 title: 'Implementing a Share button with Preact in Astro'
 excerpt: 'Dipping my toe in Preact. I wanted to create a quick and dirty component to ✨feel✨ Preact as an experienced React developer. Spoiler alert: it was a breeze.'
-publishedAt: 2025-06-20T17:30:00-0600
+publishedAt: 2025-06-20T17:20:00-0600
 image: ../../assets/blog/2025/06/astro-preact.jpeg
 project: ah-dot-tech
 tags:

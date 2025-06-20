@@ -1,7 +1,7 @@
 ---
 title: 'Implementing a Share button in Astro'
 excerpt: I wanted to explore the Share API, so I built this neat little Astro component that triggers the share experience in the supporting browsers.
-publishedAt: 2025-06-18T10:11:00-0600
+publishedAt: 2025-06-18T22:11:00-0600
 image: ../../assets/blog/2025/06/astro-share.jpeg
 project: ah-dot-tech
 tags:
