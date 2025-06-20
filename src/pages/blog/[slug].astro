@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ShareButton from "../../components/ShareButton.astro";
+import ShareButton from "../../components/ShareButton";
 import { format } from "date-fns";
 import { render } from "astro:content";
 import GoBackButton from "../../components/GoBackButton.astro";
@@ -40,7 +40,7 @@ const socialImageURL = new URL(image.src, Astro.url);
       <div
         class="fixed flex flex-row gap-4 bottom-24 right-4 lg:bottom-auto lg:top-8 lg:right-12"
       >
-        <ShareButton title={post.data.title} href={Astro.url} />
+        <ShareButton title={post.data.title} href={Astro.url.toString()} client:load />
         <GoBackButton />
       </div>
     </header>
