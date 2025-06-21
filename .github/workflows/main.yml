@@ -1,0 +1,48 @@
+name: Deploy to Prod
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  buildanddeploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Act dependencies
+        if: ${{ env.ACT }}
+        run: |
+          apt-get update && apt-get install sudo -y
+          sudo apt-get install openssh-client rsync -y
+      - name: Checkout codebase
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Build site
+        run: npm run build
+      - name: Build pagefind index
+        run: npm run index
+      - name: Building the keys to the kingdom
+        run: |
+          echo "${{secrets.REMOTE_SERVER_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+      - name: Wipping old release
+        run: |
+          ssh -i ./deploy_key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER_USER }}@${{ secrets.REMOTE_SERVER_HOST }} 'rm -rf ${{secrets.REMOTE_SERVER_DEST}}/*'
+      - name: Rsync to Prod
+        env:
+          DEST: ${{ secrets.REMOTE_SERVER_USER }}@${{ secrets.REMOTE_SERVER_HOST }}:${{secrets.REMOTE_SERVER_DEST}}
+        run: |
+          rsync -chrlvzi --delete \
+            -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
+            --exclude '/deploy_key' \
+            --exclude '/.*/' \
+            --exclude '.*' \
+            ./dist/ ${{env.DEST}}/
+      - name: Clean up
+        run: |
+          rm deploy_key
