@@ -8,6 +8,7 @@ jobs:
   buildanddeploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    environment: PROD
     steps:
       - name: Install Act dependencies
         if: ${{ env.ACT }}
