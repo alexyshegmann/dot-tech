@@ -68,27 +68,29 @@ const { pathname } = Astro.url;
     </script>
   </head>
   <body class="dark:bg-gray-900 bg-gray-50 h-full">
-    <div class="flex flex-col xl:flex-row gap-4 xl:h-screen">
-      <div class="flex flex-col w-full xl:w-1/4 xl:h-screen">
+    <div class="flex flex-col lg:flex-row gap-4 xl:h-screen">
+      <div class="flex flex-col w-full lg:w-1/3 xl:w-1/4 xl:h-screen">
         <div class="m-4">
           <Logo />
         </div>
         <div
-          class={`prose-sm mx-4 mb-4 text-gray-600 dark:text-gray-500 leading-8 ${isHome ? "block" : "hidden"}`}
+          class={`prose prose-sm mx-4 min-[2440px]:mx-auto my-4 dark:prose-invert leading-8 ${isHome ? "block" : "hidden"}`}
           data-pagefind-ignore
         >
           <p>
             I'm a Software Engineer with <strong>15+ years</strong> of experience
             and a deep love for clean code, clever architecture, and CSS that doesn't
             fight back. I specialize in <strong>React + TypeScript</strong>, but
-            I've wrestled plenty of backends too—<strong>mainly Node and PHP</strong>.
-            I see software as a handmade craft, and I treat every
-            project like it deserves its own love letter.
+            I've wrestled plenty of backends too—mainly <strong
+              >Node and PHP</strong
+            >. I see software as a handmade craft, and I treat every project
+            like it deserves its own love letter.
           </p>
         </div>
-        <div class="flex flex-col gap-4 grow">
-          <!-- <Search /> -->
-          <div class="mx-4">
+        <div
+          class="flex flex-col gap-4 grow max-w-2xl mx-4 min-[2440px]:mx-auto"
+        >
+          <div class="mt-6 mb-4">
             <Search
               id="search"
               className="pagefind-ui"
@@ -177,7 +179,7 @@ const { pathname } = Astro.url;
           </div>
         </div>
       </div>
-      <div class="w-full xl:w-3/4 h-auto lg:h-screen overflow-y-auto">
+      <div class="w-full lg:w-2/3 xl:w-3/4 h-auto lg:h-screen overflow-y-auto">
         <slot />
       </div>
     </div>
