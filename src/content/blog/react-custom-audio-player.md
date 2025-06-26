@@ -5,6 +5,7 @@ publishedAt: 2025-06-25T17:20:00-0600
 image: ../../assets/blog/2025/06/custom-audio-player.jpeg
 tags:
   - React
+  - TailwindCSS
   - Web Audio API
   - Tutorial
 ---
@@ -200,7 +201,7 @@ export function useAudioPlayer({ src }: UseAudioPlayerProps) {
   };
 
   // Handle src loading
-  // TODO: Handle dynamic changes to the src prop?
+  // TODO: Handle dynamic changes to the src prop? Also, error handling?
   useEffect(() => {
     audio.current.src = src;
   }, [src]);
