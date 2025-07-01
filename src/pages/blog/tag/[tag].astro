@@ -6,7 +6,8 @@ import PostCard from "../../../components/PostCard.astro";
 import GoBackButton from "../../../components/GoBackButton.astro";
 
 export async function getStaticPaths() {
-  let posts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
+  const posts = allPosts.filter((post) => post.data.status === "published")
   const { tags } = getTags(posts);
 
   return tags.map((tag) => ({

@@ -9,6 +9,7 @@ tags:
   - Preact
   - Exploring tech
   - Quick how-to
+status: published
 ---
 # Implementing a Share button with Preact in Astro
 

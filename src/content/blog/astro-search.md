@@ -10,6 +10,7 @@ tags:
   - Quick how-to
   - Search engine
   - pagefind
+status: published
 ---
 # Implementing Search in Astro
 

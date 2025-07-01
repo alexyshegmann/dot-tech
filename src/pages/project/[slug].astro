@@ -21,7 +21,7 @@ const { Content } = await render(project);
 const posts = await getCollection("blog");
 const related = posts
   .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
-  .filter((post) => post.data.project?.id === project.id)
+  .filter((post) => post.data.project?.id === project.id && post.data.status === "published")
   .slice(0, 5);
 ---
 

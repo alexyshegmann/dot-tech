@@ -7,13 +7,15 @@ import icon from 'astro-icon';
 
 import preact from '@astrojs/preact';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://alexyshegmann.tech",
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [astroReadingTime(), icon(), pagefind(), preact({ devtools: true })],
+  integrations: [astroReadingTime(), icon(), pagefind(), preact({ devtools: true }), mdx()],
   markdown: {
     shikiConfig: {
       theme: 'dracula'

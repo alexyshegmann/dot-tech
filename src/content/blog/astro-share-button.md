@@ -9,6 +9,7 @@ tags:
   - Exploring tech
   - Quick how-to
   - Browser API
+status: published
 ---
 # Implementing a Share button in Astro
 

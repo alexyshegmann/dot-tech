@@ -7,6 +7,7 @@ project: ah-dot-tech
 tags:
   - Astro
   - Exploring tech
+status: published
 ---
 # The Astro Update
 

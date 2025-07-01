@@ -3,7 +3,7 @@ import { defineCollection, reference, z } from "astro:content";
 
 const blog = defineCollection({
   loader: glob({
-    pattern: ['**/*.md', '**/*.mdx'],
+    pattern: '**/*.{md, mdx}',
     base: './src/content/blog',
   }),
   schema: ({ image }) => z.object({
@@ -13,12 +13,13 @@ const blog = defineCollection({
     image: image(),
     tags: z.array(z.string()),
     project: reference('projects').optional(),
+    status: z.enum(["draft", "published"]).default("draft"),
   }),
 });
 
 const projects = defineCollection({
   loader: glob({
-    pattern: ['**/*.md', '**/*.mdx'],
+    pattern: '**/*.{md, mdx}',
     base: './src/content/projects',
   }),
   schema: ({ image }) => z.object({

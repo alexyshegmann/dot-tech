@@ -10,6 +10,7 @@ tags:
   - DevOps
   - Github Actions
   - CI CD
+status: published
 ---
 # Astro deployment with rsync and Github Actions
 
