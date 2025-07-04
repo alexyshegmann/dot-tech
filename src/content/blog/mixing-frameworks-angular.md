@@ -1,5 +1,5 @@
 ---
-title: 'React mixology: mixing React with other frameworks'
+title: 'React mixology: mixing React with Angular'
 excerpt: "imagine this: you have an inherited project in a very different framework, but you have to revamp it and build new features around it. You want to modernize the stack a little bit. The team agrees to go with React."
 publishedAt: 2025-07-04T08:00:00-0600
 image: ../../assets/blog/2025/07/react-angular.jpeg
@@ -8,13 +8,13 @@ tags:
   - Angular
   - TypeScript
 ---
-# React mixology: mixing React with other frameworks
+# React mixology: mixing React with Angular
 
-Usually, whenever you start a new project, you define your stack and work your way up. But imagine this: you have an inherited project in a very different framework, but you have to revamp it and build new features around it. You want to modernize the stack a little bit. The team agrees to go with React and slowly refactor old parts with the Strangle approach __whenever you have time™️__.
+Usually, whenever you start a new project, you define your stack and work your way up. But imagine this: you have an inherited project in a very different framework: and old version of Angular, but you have to revamp it and build new features around it. You want to modernize the stack a little bit. The team agrees to go with React and slowly refactor old parts with the Strangle approach __whenever you have time™️__.
 
 ## The old stack: Angular
 
-I created a new angular app using the CLI for this post, but let's keep imagining that this is a prod app already serving clients. In this hypothetic scenario, you start with a new feature that requires a new route. Let's just create a new component that will serve as a container.
+I created a brand new Angular app using the latest CLI for this post, but let's keep imagining that this is a prod app already serving clients built with an older version of Angular. In this hypothetic scenario, you start with a new feature that requires a new route. Let's just create a new component that will serve as a container.
 
 ```shell
 $ ng generate component my-react-page
