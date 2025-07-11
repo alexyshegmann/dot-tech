@@ -7,6 +7,8 @@ tags:
   - React
   - Angular
   - TypeScript
+  - Experiments
+  - PoC
 ---
 # React mixology: mixing React with Angular
 
