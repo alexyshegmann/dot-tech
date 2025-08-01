@@ -7,6 +7,7 @@ tags:
   - React
   - TailwindCSS
   - Web Audio API
+  - Browser APIs
   - Tutorial
 ---
 # Custom Audio Player in React
