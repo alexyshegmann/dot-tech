@@ -24,6 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build site
+        env:
+          TZ: America/Mexico_City
         run: npm run build
       - name: Build pagefind index
         run: npm run index
