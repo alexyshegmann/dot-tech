@@ -2,9 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import astroReadingTime from 'astro-reading-time';
 import { defineConfig } from 'astro/config';
 import pagefind from "astro-pagefind";
-
 import icon from 'astro-icon';
-
 import preact from '@astrojs/preact';
 
 // https://astro.build/config
