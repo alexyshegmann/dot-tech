@@ -2,11 +2,11 @@
 import "../styles/global.css";
 import DarkMode from "../components/DarkMode.astro";
 import Search from "astro-pagefind/components/Search";
-import LogoImg from "../assets/logo.svg";
 import Logo from "../components/Logo.astro";
 
-const { title, description, image, isHome = false } = Astro.props;
+const { slug, title, description, image, isHome = false } = Astro.props;
 const { pathname } = Astro.url;
+const pinterestImage = new URL(`/pinterest/${slug}.png`, Astro.site);
 ---
 
 <!doctype html>
@@ -31,6 +31,8 @@ const { pathname } = Astro.url;
     {description && <meta property="og:description" content={description} />}
     {image && <meta property="og:image" content={image} />}
     <meta property="og:image:alt" content={title} />
+    <meta property="pinterest:description" content={description} />
+    <meta property="pinterest:image" content={pinterestImage} />
     <title>{title}</title>
     <style>
       html {
