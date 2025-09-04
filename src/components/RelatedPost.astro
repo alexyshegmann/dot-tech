@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import { format } from "date-fns";
+const { post } = Astro.props;
+---
+
+<article
+  class="flex flex-row shadow-md dark:bg-gray-700 rounded-sm relative"
+>
+  <Image
+    src={post.data.image}
+    alt={post.data.title}
+    class="aspect-square object-cover w-1/4 rounded-l-sm"
+  />
+  <div class="w-3/4">
+    <h2
+      class="flex-grow text-md leading-5 my-4 mx-4 text-gray-500 dark:text-gray-300 line-clamp-2"
+    >
+      <a
+        href={`/blog/${post.id}`}
+        class="after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full"
+      >
+        {post.data.title}
+      </a>
+    </h2>
+    <div class="prose prose-sm dark:prose-invert line-clamp-3 mx-4 mb-4">
+      <p>{post.data.excerpt}</p>
+    </div>
+  </div>
+</article>

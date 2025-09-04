@@ -5,20 +5,37 @@ import ShareButton from "../../components/ShareButton";
 import { format } from "date-fns";
 import { render } from "astro:content";
 import GoBackButton from "../../components/GoBackButton.astro";
+import RelatedPost from "../../components/RelatedPost.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { BM25Utils } from "astro-relatinator";
 
 export async function getStaticPaths() {
   let posts = await getCollection("blog");
-  return posts.map((post: any) => ({
-    props: {
-      post,
-    },
-    params: { slug: post.id },
-  }));
+  return Promise.all(
+    posts.map(async (post: any) => {
+      const relatedTitles = await BM25Utils.findRelated(
+        `${post.data.title} ${post.data.excerpt} ${post.body}`,
+        post.id,
+        3
+      );
+      const relatedPosts = relatedTitles
+        .filter((title) => title !== post.data.title)
+        .map((title) =>
+          posts.find((p) => p.data.title === title)
+        );
+      return {
+        props: {
+          post,
+          relatedPosts,
+        },
+        params: { slug: post.id },
+      };
+    })
+  );
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 const { Content } = await render(post);
 const image = await getImage({ src: post.data.image });
 const socialImageURL = new URL(image.src, Astro.url);
@@ -41,7 +58,11 @@ const socialImageURL = new URL(image.src, Astro.url);
       <div
         class="fixed flex flex-row gap-4 bottom-24 right-4 lg:bottom-auto lg:top-8 lg:right-12"
       >
-        <ShareButton title={post.data.title} href={Astro.url.toString()} client:load />
+        <ShareButton
+          title={post.data.title}
+          href={Astro.url.toString()}
+          client:load
+        />
         <GoBackButton />
       </div>
     </header>
@@ -116,6 +137,12 @@ const socialImageURL = new URL(image.src, Astro.url);
           )
         )
       }
+    </div>
+    <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
+      Related Posts
+    </div>
+    <div class="flex flex-wrap justify-center gap-2">
+      {relatedPosts.map((relatedPost) => <RelatedPost post={relatedPost} />)}
     </div>
     <div class="text-gray-600 dark:text-gray-200 font-bold mb-4 mt-8 text-3xl">
       Tags
