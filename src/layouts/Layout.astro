@@ -57,9 +57,9 @@ const pinterestImage = new URL(`/pinterest/${slug}.png`, Astro.site);
     </style>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-12Y7MRB86R"
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-12Y7MRB86R" is:inline
     ></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -88,6 +88,14 @@ const pinterestImage = new URL(`/pinterest/${slug}.png`, Astro.site);
             >. I see software as a handmade craft, and I treat every project
             like it deserves its own love letter.
           </p>
+          <script
+            type="text/javascript"
+            src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+            is:inline
+          ></script><script type="text/javascript">
+            kofiwidget2.init("Support me on Ko-fi", "#c70036", "T6T61LDKRA");
+            kofiwidget2.draw();
+          </script>
         </div>
         <div
           class="flex flex-col gap-4 grow max-w-2xl mx-4 min-[2440px]:mx-auto"
