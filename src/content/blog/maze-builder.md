@@ -24,8 +24,6 @@ Now, the "thing"... what should it be? It can be a CLI tool or a web app. Maybe 
 
 I want to center this around printing the output, so instead of generating the image on a canvas, I think it would be better to output an svg file to keep the borders crisp.
 
-crisp.
-
 ## The memory definition
 
 A maze is a group of corridors. Those corridors have walls or not on each face. A corridor with all the walls is an enclosed room.
@@ -222,7 +220,7 @@ Note the line width. I'm using half the stroke width for the internal walls for 
 
 ## Carving the maze
 
-The meat of this article, right? We have a way of representing the maze and now a way to print it, but right now we only have a matriz of enclosed rooms.
+The meat of this article, right? We have a way of representing the maze and now a way to print it, but right now we only have a matrix of enclosed rooms.
 
 The algorithm I'm going to use is [randomized depth-first search](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Randomized_depth-first_search) with stack. I think this algorithm is easy enough for what I want to do, and it still generates pretty nice mazes.
 
